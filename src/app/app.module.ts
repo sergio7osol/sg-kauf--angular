@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ListboxModule } from 'primeng/listbox';
+
 import { AppComponent } from './app.component';
 import { MainHeaderComponent } from "./main-header/main-header.component";
 import { LeftMenuComponent } from './left-menu/left-menu.component';
@@ -13,7 +15,8 @@ import { LeftMenuComponent } from './left-menu/left-menu.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ListboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
