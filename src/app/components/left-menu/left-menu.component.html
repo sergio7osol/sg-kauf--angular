@@ -1,13 +1,14 @@
-<div class="main-content__left-menu left-menu">
+<div class="main-content__left-menu vertical-menu-wrapper">
   <p-listbox
     id="sidebarMenu"
+    listStyleClass="vertical-menu"
+    styleClass="vertical-menu__container"
     [options]="items"
     [(ngModel)]="activeItem"
     [(ngModel)]="loadingItem"
     (onChange)="selectItem($event.value)"
-    optionLabel="date"
     [filter]="true"
-    listStyleClass="vertical-menu"
+    optionLabel="date"
   >
     <ng-template let-item pTemplate="item">
       <div class="vertical-menu__item-link"
@@ -16,8 +17,8 @@
           'vertical-menu__item--loading': item.date === loadingItem
         }"
       >
-        <div>{{item.date}}</div>
-        <sup>{{item.count}}</sup>
+        <span class="vertical-menu__count-icon">{{ countProducts(item) }}</span>
+        <span class="vertical-menu__item-text">{{ item.date }}</span>
       </div>
     </ng-template>
   </p-listbox>

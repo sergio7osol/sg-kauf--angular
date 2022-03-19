@@ -2,7 +2,13 @@
   <app-main-header [title]="appTitle"></app-main-header>
   <div class="main-content" role="main">
     <div class="main-content__left-menu">
-      <app-left-menu></app-left-menu> <!-- :selected-date='activeDate' @date-selected='getDate' :key='Date.now()' -->
+      <app-left-menu
+        [items]="shoppingDates"
+        [loadingItem]="loadingDate"
+        [activeItem]="activeDate"
+        (itemSelected)="onDateSelected($event)"
+      >
+      </app-left-menu> <!-- :selected-date='activeDate' @date-selected='getDate' :key='Date.now()' -->
     </div>
     <div class="main-content__body col">
       <svg id="rocket-smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632"

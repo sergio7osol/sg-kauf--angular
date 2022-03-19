@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import DetailedDateInfo from '../../types/DetailedDateInfo';
 
 @Component({
@@ -19,6 +19,20 @@ export class LeftMenuComponent implements OnInit {
   selectItem(item: DetailedDateInfo) {
     this.itemSelected.emit(item);
   }
+
+  countProducts (date: DetailedDateInfo): number {
+    if (date.count) {
+      return date.count;
+    }
+    let productQuantity: number | undefined = date?.buys?.reduce((quantity, buy) => {
+      if (buy.products && buy.products.length) {
+        quantity += buy.products.length;
+      }
+      return quantity;
+    }, 0);
+    productQuantity = productQuantity === undefined ? 0 : productQuantity;
+    return productQuantity;
+  };
 }
 
 
