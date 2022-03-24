@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import BuyInfo from 'src/app/types/BuyInfo';
+import DetailedDateInfo from '../../types/DetailedDateInfo';
 
 @Component({
   selector: 'app-buy-section',
@@ -7,7 +7,7 @@ import BuyInfo from 'src/app/types/BuyInfo';
   styleUrls: ['./buy-section.component.scss']
 })
 export class BuySectionComponent implements OnInit {
-  @Input() buys: BuyInfo[];
+  @Input() activeDate: DetailedDateInfo;
 
   constructor() { }
 

@@ -2,13 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { ShoppingDatesService } from './services/shopping-dates.service'
 import DetailedDateInfo from './types/DetailedDateInfo'
 import BuyInfo from './types/BuyInfo'
-
-interface AppState {
-  appTitle: string,
-  shoppingDates: DetailedDateInfo[],
-  activeDate: DetailedDateInfo,
-  loadingDate: string
-}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -52,15 +45,17 @@ export class AppComponent implements OnInit {
       console.warn('Wrong format for "loading date"');
     }
   }
-  setActiveDate (newDate: string) {
+  setActiveDate (newDate: string): boolean {
     const dateToSelect = this.shoppingDates.find(item => item.date === newDate);
     if (!dateToSelect) {
         console.warn(`Chosen date ${newDate} for loading buys was not found. No date is selected.`);
         this.activeDate = {} as DetailedDateInfo;
+        return false;
     }
     if (dateToSelect.buys) {
       this.activeDate = { ...dateToSelect };
       this.setLoadingDate('');
+      return true;
     } else {
       this.shoppingDatesService.readDate(newDate)
         .then((data: BuyInfo[]) => {
@@ -74,6 +69,7 @@ export class AppComponent implements OnInit {
             }
         })
         .catch(err => console.log('Fetch Error :-S', err));
+        return true;
     }
   }
 }

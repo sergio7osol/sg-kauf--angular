@@ -2,6 +2,6 @@
 <ul class="buy-section__list item-list">
   <li class="buy" *ngFor="let buy of buys">
     <!-- <Buy :buyData="buy" /> -->
-    <p>Buy component</p>
+    <p>{{buy.date + ' : ' + buy.time}}</p>
   </li>
 </ul>
