@@ -1,4 +1,4 @@
-<div class="main-content__left-menu vertical-menu-wrapper">
+<nav id="sidebarMenu" class="vertical-menu-wrapper">
   <p-listbox
     id="sidebarMenu"
     listStyleClass="vertical-menu"
@@ -17,9 +17,9 @@
           'vertical-menu__item--loading': item.date === loadingItem
         }"
       >
-        <span class="vertical-menu__count-icon">{{ countProducts(item) }}</span>
+      <span class="vertical-menu__count-icon">{{ countProducts(item) }}</span>
         <span class="vertical-menu__item-text">{{ item.date }}</span>
       </div>
     </ng-template>
   </p-listbox>
-</div>
+</nav>

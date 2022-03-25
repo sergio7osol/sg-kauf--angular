@@ -4,6 +4,10 @@
 :host ::ng-deep {
   .p-listbox {
     background-color: transparent;
+    height: 100%;
+  }
+  .p-listbox-list-wrapper {
+    height: calc(100% - 3.625rem);
   }
   .p-listbox .p-listbox-list .p-listbox-item {
     padding: 0;

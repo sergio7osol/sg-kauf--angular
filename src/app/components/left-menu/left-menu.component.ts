@@ -8,8 +8,8 @@ import DetailedDateInfo from '../../types/DetailedDateInfo';
 })
 export class LeftMenuComponent implements OnInit {
   @Input() items: DetailedDateInfo[];
-  @Input() loadingItem: string;
   @Input() activeItem: DetailedDateInfo;
+  @Input() loadingItem: string;
   @Output() itemSelected = new EventEmitter<DetailedDateInfo>();
 
   constructor() {}
