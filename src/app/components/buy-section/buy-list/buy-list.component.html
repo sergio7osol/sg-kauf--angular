@@ -1,7 +1,7 @@
-<h3>Buy List</h3>
-<ul class="buy-section__list item-list">
-  <li class="buy" *ngFor="let buy of buys">
-    <!-- <Buy :buyData="buy" /> -->
-    <p>{{buy.date + ' : ' + buy.time}}</p>
-  </li>
-</ul>
+<div class="buy-list">
+  <ul class="buy-list__items">
+    <li class="buy-list__item" *ngFor="let buy of buys">
+      <app-buy [buy]="buy"></app-buy>
+    </li>
+  </ul>
+</div>

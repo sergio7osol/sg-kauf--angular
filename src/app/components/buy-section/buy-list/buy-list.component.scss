@@ -1,0 +1,13 @@
+@use '../../../../assets/styles/variables';
+
+.buy-list {
+  &__items {
+    // counter-reset: buy-counter;
+    align-items: stretch;
+    list-style-type: none;
+    padding-left: 0;
+  }
+  &__item {
+    margin-bottom: 1rem;
+  }
+}

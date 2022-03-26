@@ -1,6 +1,6 @@
 @use '../../../assets/styles/variables' as *;
 
-// overwrite existing primeng styles
+// overwrite primeng styles
 :host ::ng-deep {
   .p-listbox {
     background-color: transparent;

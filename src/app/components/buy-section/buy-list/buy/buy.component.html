@@ -1,0 +1,55 @@
+<div class="buy">
+  <p-table
+    [value]="buy.products"
+    styleClass="p-datatable-sm p-datatable-striped"
+    selectionMode="single"
+  >
+    <ng-template pTemplate="caption">
+      <caption class="buy__caption">
+        {{ buy.time }},
+        {{ buy.address.country }}
+        {{ buy.address.index }}
+        {{ buy.address.city }}
+        {{ buy.address.street }}
+        {{ buy.address.houseNumber }},
+        {{ buy.shopName }}
+        - {{ buy.payMethod }} -
+        {{ buy.currency }}
+        <button class="btn btn--icon-remove" (click)="remove(buy)"></button>
+      </caption>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Weight/Amount</th>
+        <th>Measure</th>
+        <th>Description</th>
+        <th>Discount</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>#</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.weightAmount}}</td>
+        <td>{{product.measure}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.discount}}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            class="p-button-rounded p-button-danger p-button-text"
+            (click)="sendProductToRemove(buy.date, buy.time, product)"
+            type="button"
+            icon="pi pi-times"
+          ></button>
+      </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
