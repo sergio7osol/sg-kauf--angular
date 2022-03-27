@@ -30,9 +30,9 @@
         <th>Actions</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-product let-rowIndex="rowIndex + 1">
       <tr>
-        <td>#</td>
+        <td>{{rowIndex}}</td>
         <td>{{product.name}}</td>
         <td>{{product.price}}</td>
         <td>{{product.weightAmount}}</td>

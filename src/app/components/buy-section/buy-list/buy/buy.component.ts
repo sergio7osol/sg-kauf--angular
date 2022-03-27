@@ -23,6 +23,5 @@ export class BuyComponent implements OnInit {
     console.log('sendProductToRemove');
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
