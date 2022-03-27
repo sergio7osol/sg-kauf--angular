@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import BuyInfo from '../../../../types/BuyInfo';
 import Product from 'src/app/types/Product';
 
@@ -9,18 +9,18 @@ import Product from 'src/app/types/Product';
 })
 export class BuyComponent implements OnInit {
   @Input() buy: BuyInfo;
+  @Output() buyRemoved = new EventEmitter<BuyInfo>();
 
   constructor() { }
 
   remove (buy: BuyInfo) {
     // store.methods.removeBuy(buy);
-    console.log('remove');
+    this.buyRemoved.emit(buy);
   }
 
   sendProductToRemove (date: string, time: string, productInfoForRemove: Product) {
-    console.log('sendProductToRemove');
-
     // store.methods.removeProduct(date, time, productInfoForRemove);
+    console.log('sendProductToRemove');
   }
 
   ngOnInit(): void {

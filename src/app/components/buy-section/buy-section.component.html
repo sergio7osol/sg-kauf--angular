@@ -9,5 +9,5 @@
     </svg>
     {{ activeDate.date }}
   </h4>
-  <app-buy-list [buys]="activeDate.buys"></app-buy-list>
+  <app-buy-list [buys]="activeDate.buys" (buyRemoved)="removeBuy($event)"></app-buy-list>
 </div>

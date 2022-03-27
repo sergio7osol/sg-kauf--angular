@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
       console.error('Problem. No dates for left menu loaded.');
     }
   }
+
   onDateSelected(shoppingDate: DetailedDateInfo) {
     this.setLoadingDate(shoppingDate.date);
     this.setActiveDate(shoppingDate.date);
@@ -45,6 +46,7 @@ export class AppComponent implements OnInit {
       console.warn('Wrong format for "loading date"');
     }
   }
+
   setActiveDate (newDate: string): boolean {
     const dateToSelect = this.shoppingDates.find(item => item.date === newDate);
     if (!dateToSelect) {
@@ -72,4 +74,55 @@ export class AppComponent implements OnInit {
         return true;
     }
   }
+
+  removeBuy(buy: BuyInfo) {
+    const existingShoppingDate = this.shoppingDates.find((shoppingDate: DetailedDateInfo) => shoppingDate.date === buy.date);
+    const existingBuy = existingShoppingDate && existingShoppingDate.buys?.find((buyItem: BuyInfo) => buyItem.time === buy.time);
+    if (!existingBuy) {
+      console.log(`Buy for deleting on ${buy.date} at ${buy.time} was not found.`);
+      return false;
+    }
+
+    if (confirm('Are you sure, you want to delete this buy?')) {
+      console.log(`Prompted deleting of the buy. Confirmed. The buy on ${buy.date} at ${buy.time} is going to be deleted...`);
+    } else {
+      console.log(`Prompted deleting of the buy. Rejected. The buy on ${buy.date} at ${buy.time} is NOT going to be deleted.`);
+      return false;
+    }
+    const urlSuffix = `date=${buy.date}&time=${buy.time}`;
+
+    this.shoppingDatesService.deleteBuy(urlSuffix) // TODO: make no response from server -> do it locally
+      .then((newArray: BuyInfo[]) => {
+          if (newArray) {
+              console.log(`The buy on ${buy.date} at ${buy.time} was successfully removed. ${newArray.length} buys left for this date.`);
+              if (newArray.length) {
+                  if (existingShoppingDate && existingShoppingDate.buys) {
+                      existingShoppingDate.buys = newArray;
+                  }
+              } else if (existingShoppingDate) {
+                  console.log(`Date ${buy.date} with no buys left is going to be removed...`);
+                  const indexOfDateToDelete = this.shoppingDates.indexOf(existingShoppingDate);
+                  console.log('index of date to delete: ', indexOfDateToDelete);
+                  this.shoppingDates.splice(indexOfDateToDelete, 1);
+                  this.setActiveDate('');
+
+                  // TODO: add another possibility for deleting date - separately
+                  //   if (confirm(`There are no buys left for date ${buy.date}, do you want to delete this shopping date completely?`)) {
+                  //     console.log(`Prompted deleting of the date. Confirmed. The date ${buy.date} is going to be deleted...`);
+                  //     const indexOfDateToDelete = state.shoppingDates.find(shoppingDate => shoppingDate === existingShoppingDate);
+                  //     console.log('indexOfDateToDelete > ', indexOfDateToDelete);
+                  //   } else {
+                  //     console.log(`Prompted deleting of the date. Rejected. The date ${buy.date} is NOT going to be deleted.`);
+                  //     return false;
+                  //   }
+              }
+          }
+      })
+      .catch(function (err) {
+          console.log('Fetch Error :-S', err);
+      });
+    }
+  // sendProductToRemove (date: string, time: string, productInfoForRemove: Product) {
+    // store.methods.removeProduct(date, time, productInfoForRemove);
+  // };
 }

@@ -1,7 +1,7 @@
-<div class="buy-list">
-  <ul class="buy-list__items">
+<div class="buy-list-wrapper">
+  <ul class="buy-list">
     <li class="buy-list__item" *ngFor="let buy of buys">
-      <app-buy [buy]="buy"></app-buy>
+      <app-buy [buy]="buy" (buyRemoved)="removeBuy($event)"></app-buy>
     </li>
   </ul>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import BuyInfo from '../../../types/BuyInfo';
 
 @Component({
@@ -8,10 +8,15 @@ import BuyInfo from '../../../types/BuyInfo';
 })
 export class BuyListComponent implements OnInit {
   @Input() buys: BuyInfo[];
+  @Output() buyRemoved = new EventEmitter<BuyInfo>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  removeBuy(buy: BuyInfo) {
+    console.log('buy-list: EMIT buyRemoved');
+    this.buyRemoved.emit(buy);
+  }
 }
